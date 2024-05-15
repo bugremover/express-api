@@ -1,17 +1,10 @@
 const express =require('express');
 const app = express();
-const PORT =9000;
-const mongoose = require('mongoose');
+const PORT =10000;
+const {connectDB}=require('./db');
+connectDB();
 
-let MONGODB_URL="mongodb://localhost:27017/url_shortener"
-mongoose.connect(MONGODB_URL)
-.then(()=>{
-    console.log('Connected to Database');
-})
-.catch((err)=>{
-    console.log(err.message);
-})
-
+const URL=require('./models/urlmodel');
 app.get('/',(req,res)=>{
     res.send('Welcome to Oxynes');
 });
